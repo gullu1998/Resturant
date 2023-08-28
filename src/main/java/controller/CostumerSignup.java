@@ -33,9 +33,10 @@ public class CostumerSignup extends HttpServlet {
 		String gender=req.getParameter("gender");
 		String country=req.getParameter("country");
 		LocalDate dob=LocalDate.parse(req.getParameter("dob"));
+		//logic to calculate the age in year from the date of birth
+		int age=Period.between(dob, LocalDate.now()).getYears();
 		
 		//logic to receive the image and convert to byte[]
-		int age=Period.between(dob, LocalDate.now()).getYears();
 		Part pic=req.getPart("picture");
 		byte[] picture=null;
 		picture= new byte[pic.getInputStream().available()];
