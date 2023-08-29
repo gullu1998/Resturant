@@ -22,6 +22,7 @@ public class Customer {
 	private String password;
 	private String gender;
 	private LocalDate dob;
+	
 	@Lob
 	private byte[] picture;
 	private int age;

@@ -13,14 +13,14 @@ import dao.MyDao;
 import dto.AddFoodItem;
 
 @WebServlet("/ViewMenu")
-public class AdminViewMenu  extends HttpServlet{
+public class AdminViewMenu extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//logic to fetch data from database
-		MyDao dao=new MyDao();
-		 List<AddFoodItem> items = dao.fetchAllFoodItem();
-		 
+
+		// logic to fetch data from database
+		MyDao dao = new MyDao();
+		List<AddFoodItem> items = dao.fetchAllFoodItem();
+
 //		 //logic to display data on frontend
 //		 resp.getWriter().print("<html><body><h1>Menu</h1>");
 //		 resp.getWriter().print("<table border='1'>");
@@ -32,20 +32,15 @@ public class AdminViewMenu  extends HttpServlet{
 //			}
 //			resp.getWriter().print("</table></body></html>");
 
-		 
-		 //logic to carry data to frontend
-		 
-		if(items.isEmpty()){
-			resp.getWriter().print("<h1 style='color:red'>no items found</h1> ");
-			req.getRequestDispatcher("AdminHome.html").forward(req, resp);
-		}
-			else {
-				
-			
-			 req.setAttribute("list", items);
-			 req.getRequestDispatcher("ViewMenu.jsp").forward(req, resp);
-			}
+		// logic to carry data to frontend
+
+		if (items.isEmpty()) {
+			resp.getWriter().print("<h1 style='color:red'>No Items Found</h1> ");
+			req.getRequestDispatcher("AdminHome.html").include(req, resp);
+		} else {
+
+			req.setAttribute("list", items);
+			req.getRequestDispatcher("ViewMenu.jsp").include(req, resp);
 		}
 	}
-
-
+}

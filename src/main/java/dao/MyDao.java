@@ -65,4 +65,14 @@ public class MyDao {
 	{
 		return m.createQuery("select x from AddFoodItem x").getResultList();
 	}
+	public AddFoodItem find(int id)
+	{
+		return m.find(AddFoodItem.class, id);
+	}
+	public void delete(AddFoodItem item)
+	{
+		t.begin();
+		m.remove(item);
+		t.commit();
+	}
 }
