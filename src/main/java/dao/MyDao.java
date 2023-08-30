@@ -75,4 +75,10 @@ public class MyDao {
 		m.remove(item);
 		t.commit();
 	}
+	public void update(AddFoodItem item)
+	{
+		t.begin();
+		m.merge(item);
+		t.commit();
+	}
 }
