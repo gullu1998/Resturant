@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>View Admin Menu</title>
 </head>
 <body>
 	<%
@@ -21,13 +21,13 @@
 			<th>Picture</th>
 			<th>Type</th>
 			<th>Price</th>
-			<th>Quantity</th>
+			<th>Stock</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
-		<%
+	    <%
 		for (AddFoodItem item : items) {
-		%>
+			%>
 		<tr>
 			<th><%=item.getId()%></th>
 			<th><%=item.getName()%></th>
@@ -41,7 +41,7 @@
 			</th>
 			<th><%=item.getType()%></th>
 			<th><%=item.getPrice()%></th>
-			<th><%=item.getQuantity()%></th>
+			<th><%=item.getStock()%></th>
 			<th><a href="edit?id=<%=item.getId()%>"><button>Edit</button></a></th>
 			<th><a href="delete?id=<%=item.getId() %>"><button>Delete</button></a></th>
 			<%-- delete?id=<%=item.getId()==url rewriting it will carry the primary key --%>

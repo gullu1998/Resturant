@@ -35,7 +35,7 @@ public class AddItem extends HttpServlet{
 	   AddFoodItem foodItem=new AddFoodItem();
 	   foodItem.setName(name);
 	   foodItem.setPrice(price);
-	   foodItem.setQuantity(quantity);
+	   foodItem.setStock(quantity);
 	   foodItem.setType(type);
 	   foodItem.setPicture(picture);
 	   

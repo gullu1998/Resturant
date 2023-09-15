@@ -17,9 +17,15 @@ public class AdminViewMenu extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		// logic to fetch data from database
-		MyDao dao = new MyDao();
-		List<AddFoodItem> items = dao.fetchAllFoodItem();
+		// Http Session verification last phase of project this if else is used in the concept of session tracking
+		if (req.getSession().getAttribute("admin") == null) {
+			resp.getWriter().print("<h1 style='color:red'>Invalid Session</h1>");
+			req.getRequestDispatcher("Login.html").include(req, resp);
+		} else {
+
+			// logic to fetch data from database
+			MyDao dao = new MyDao();
+			List<AddFoodItem> items = dao.fetchAllFoodItem();
 
 //		 //logic to display data on frontend
 //		 resp.getWriter().print("<html><body><h1>Menu</h1>");
@@ -32,15 +38,16 @@ public class AdminViewMenu extends HttpServlet {
 //			}
 //			resp.getWriter().print("</table></body></html>");
 
-		// logic to carry data to frontend
+			// logic to carry data to frontend
 
-		if (items.isEmpty()) {
-			resp.getWriter().print("<h1 style='color:red'>No Items Found</h1> ");
-			req.getRequestDispatcher("AdminHome.html").include(req, resp);
-		} else {
+			if (items.isEmpty()) {
+				resp.getWriter().print("<h1 style='color:red'>No Items Found</h1> ");
+				req.getRequestDispatcher("AdminHome.html").include(req, resp);
+			} else {
 
-			req.setAttribute("list", items);
-			req.getRequestDispatcher("ViewMenu.jsp").include(req, resp);
+				req.setAttribute("list", items);
+				req.getRequestDispatcher("ViewMenu.jsp").include(req, resp);
+			}
 		}
 	}
 }

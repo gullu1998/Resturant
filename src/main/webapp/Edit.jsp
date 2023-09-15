@@ -29,7 +29,7 @@
 		 <%} %>
 		 <br>
 		 
-		Quantity:<input type="text" name="quantity" value="<%=item.getQuantity()%>"><br> 
+		Quantity:<input type="text" name="quantity" value="<%=item.getStock()%>"><br> 
 		
 			Picture:
 			<%
@@ -41,5 +41,7 @@
 		<button type="submit">Update</button>
 		<button type="reset">Cancel</button>
 	</form>
+    <br>
+    <a href="ViewMenu"><button>back</button></a>
 </body>
 </html>

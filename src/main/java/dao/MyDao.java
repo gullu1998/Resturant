@@ -8,7 +8,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import dto.AddFoodItem;
+import dto.Cart;
 import dto.Customer;
+import dto.CustomerFoodItem;
 
 public class MyDao {
 
@@ -27,6 +29,12 @@ public class MyDao {
 	{
 		t.begin();
 		m.persist(foodItem);//here we add object of AddFoodItem class thatsy we using pass by reference
+		t.commit();
+	}
+	public void save(CustomerFoodItem customer)
+	{
+		t.begin();
+		m.persist(customer);//here we add object of Customer class thatsy we using pass by reference
 		t.commit();
 	}
 	
@@ -79,6 +87,38 @@ public class MyDao {
 	{
 		t.begin();
 		m.merge(item);
+		t.commit();
+	}
+	public void update(Customer customer)
+	{
+		t.begin();
+		m.merge(customer);
+		t.commit();
+	}
+	public void update(Cart cart)
+	{
+		t.begin();
+		m.merge(cart);
+		t.commit();
+	}
+	public void update(CustomerFoodItem foodItem)
+	{
+		t.begin();
+		m.merge(foodItem);
+		t.commit();
+	}
+	public List<Customer> fetchAllCustomer()
+	{
+		return m.createQuery("select x from Customer x").getResultList();
+	}
+	public Customer finds(int id)
+	{
+		return m.find(Customer.class, id);
+	}
+	public void deleteCustomer(Customer customer)
+	{
+		t.begin();
+		m.remove(customer);
 		t.commit();
 	}
 }

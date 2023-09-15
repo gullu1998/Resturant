@@ -25,6 +25,10 @@ public class CustomerLogin extends HttpServlet {
 		if(email.equals("admin@jsp.com")&& pass.equals("admin@1998"))
 		{
 			resp.getWriter().print("<h1 style='color:green'>Login success</h1>");
+			
+			//Geeting the session (when doing seesion tracking by using Http Session)
+			req.getSession().setAttribute("admin","admin");/* in the place of this admin you take anything but must be same in session verification in AdminViewCustomer */
+			
 			//this is the logic to send to next page
 			req.getRequestDispatcher("AdminHome.html").include(req, resp);
 		}
@@ -43,6 +47,9 @@ public class CustomerLogin extends HttpServlet {
 			if(pass.equals(customer.getPassword()))
 			{
 				resp.getWriter().print("<h1 style='color:green'>Login Successful</h1>");
+				//Geeting the session (when doing seesion tracking by using Http Session)
+				req.getSession().setAttribute("customer",customer);/* here we are setting customer class object*/				
+				
 				req.getRequestDispatcher("CustomerHome.html").include(req, resp);
 			}
 			else
